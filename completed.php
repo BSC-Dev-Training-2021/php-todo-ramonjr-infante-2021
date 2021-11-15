@@ -1,3 +1,8 @@
+<?php
+    include("controllers/TodoController.php");
+    $TodoController = new TodoController();
+    $completed_tasks = $TodoController->get_todos(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,13 +26,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="completed.html">Completed</a>
+                        <a class="nav-link" href="completed.php">Completed</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="settings.html">Settings</a>
+                        <a class="nav-link" href="settings.php">Settings</a>
                     </li>
                 </ul>
             </div>
@@ -39,26 +44,23 @@
                 <header class="mt-5 ml-3">
                     <h2>
                         Completed Tasks
-                        <span class="badge badge-pill badge-info">25</span>
+                        <span class="badge badge-pill badge-info"><?php echo count($completed_tasks);?></span>
                     </h2>
                 </header>
                 <div class="col-lg-12 mt-5">
                     <!-- Tasks section-->
                     <section>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Buy groceries</li>
-                            <li class="list-group-item">Pay bills</li>
-                            <li class="list-group-item">Take dog for a walk</li>
-                            <li class="list-group-item">Fix broken chair</li>
-                            <li class="list-group-item">Do laundry</li>
-                            <li class="list-group-item">Buy groceries</li>
-                            <li class="list-group-item">Pay bills</li>
-                            <li class="list-group-item">Take dog for a walk</li>
-                            <li class="list-group-item">Fix broken chair</li>
-                            <li class="list-group-item">Do laundry</li>
+                            <?php
+                                for($x = 0;$x < count($completed_tasks);$x++){
+                                    echo '
+                                        <li class="list-group-item">'. $completed_tasks[$x]['todo_content'] .'</li>
+                                    ';
+                                }
+                            ?>
                         </ul>
                     </section>
-                    <nav aria-label="Page navigation example">
+                    <!-- <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             <li class="page-item disabled">
                                 <a class="page-link">Previous</a>
@@ -70,7 +72,7 @@
                                 <a class="page-link" href="#">Next</a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> -->
                 </div>
             </div>
         </div>
