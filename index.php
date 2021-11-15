@@ -5,6 +5,7 @@
     $todos = $TodoController->get_todos(1);
     $TodoController->complete_task();
     $total_pagination = $TodoController->total_pagination(1);
+    $TodoController->delete_todo_task();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +70,7 @@
                                    echo $todos[$x]['todo_content'];
 
                                    echo '
-                                    <button type="submit" class="btn btn-light fa fa-trash-o float-right" data-toggle="modal" data-target="#deleteConfirmModal"></button>
+                                    <button type="submit" todo_id="'.$todos[$x]['todo_id'].'" id="delete_btn" class="btn btn-light fa fa-trash-o float-right" data-toggle="modal" data-target="#deleteConfirmModal"></button>
 
                                    <form method="POST" style="">
                                     <input type="hidden" value="'.$todos[$x]['todo_id'].'" name="todo_id"/>
@@ -111,6 +112,7 @@
             </div>
             <section>
                 <div class="modal" id="deleteConfirmModal" tabindex="-1" data-backdrop="static">
+                    <form method="POST">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -121,13 +123,15 @@
                             </div>
                             <div class="modal-body">
                                 <p>Are you sure you want to delete this task?</p>
+                                <input type="hidden" name="delete_todo_txt" id="delete_todo_txt">
                             </div>
                             <div class="modal-footer">
+                                <button type="submit" name="confirm_delete_btn" class="btn btn-primary">Delete</button>
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary">Delete</button>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </section>
         </div>

@@ -61,6 +61,12 @@
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
         }
-        
+        public function delete_todo_task($todo_id){
+            $sql = "DELETE FROM todos WHERE todo_id = '" . $todo_id . "'";
+            if (mysqli_query($this->conn, $sql)) {
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+            }
+        }
     }
 ?>

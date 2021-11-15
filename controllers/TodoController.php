@@ -52,5 +52,12 @@
                 }
             }
         }
+        public function delete_todo_task(){
+            if(isset($_POST['confirm_delete_btn'])){
+                $this->TodoModel->delete_todo_task($_POST['delete_todo_txt']);
+                header("Location: http://localhost/php-todo-ramonjr-infante-2021/index.php");
+            }
+
+        }
     }
 ?>
