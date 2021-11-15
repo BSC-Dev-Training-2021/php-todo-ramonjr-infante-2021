@@ -2,6 +2,7 @@
     include("controllers/TodoController.php");
     $TodoController = new TodoController();
     $completed_tasks = $TodoController->get_todos(0);
+    $total_pagination = $TodoController->total_pagination(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,19 +61,29 @@
                             ?>
                         </ul>
                     </section>
-                    <!-- <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav> -->
+                        <?php
+                            if($total_pagination > 1){
+                        ?>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <?php
+                                    echo ' <li class="page-item">
+                                        <a class="page-link"  href="http://localhost/php-todo-ramonjr-infante-2021/completed.php?page=1">First Page</a>
+                                    </li>';
+                                    for($i=1;$i<=$total_pagination;$i++){
+                                        // echo"<a href='auditTrailAdmin.php?page=$i'>$i</a>";
+                                        echo '<li class="page-item">
+                                        <a class="page-link"  href="http://localhost/php-todo-ramonjr-infante-2021/completed.php?page='.$i.'">'.$i.'</a></li>';
+                                    }
+                                    echo '<li class="page-item">
+                                    <a class="page-link" href="http://localhost/php-todo-ramonjr-infante-2021/completed.php?page='.$total_pagination.'">Last Page</a>
+                                </li> ';
+                                ?>
+                            </ul>
+                        </nav>
+                        <?php
+                            }
+                        ?>
                 </div>
             </div>
         </div>

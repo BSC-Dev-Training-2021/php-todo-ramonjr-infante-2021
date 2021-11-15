@@ -5,7 +5,6 @@
     $todos = $TodoController->get_todos(1);
     $TodoController->complete_task();
     $total_pagination = $TodoController->total_pagination(1);
-    echo $total_pagination;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +72,7 @@
                                     <button type="submit" class="btn btn-light fa fa-trash-o float-right" data-toggle="modal" data-target="#deleteConfirmModal"></button>
 
                                    <form method="POST" style="">
-                                    <input type="text" value="'.$todos[$x]['todo_id'].'" name="todo_id"/>
+                                    <input type="hidden" value="'.$todos[$x]['todo_id'].'" name="todo_id"/>
                                     <button type="submit" name="complete_task_btn" class="btn btn-light fa fa-check float-right"></button>
 
                                    </form>
@@ -85,6 +84,9 @@
                             
                         </ul>
                     </section>
+                    <?php
+                        if($total_pagination > 1){
+                    ?>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             <?php
@@ -102,6 +104,9 @@
                             ?>
                         </ul>
                     </nav>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
             <section>
