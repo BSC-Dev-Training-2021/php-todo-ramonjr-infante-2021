@@ -3,6 +3,7 @@
     $TodoController = new TodoController();
     $completed_tasks = $TodoController->get_todos(0);
     $total_pagination = $TodoController->total_pagination(0);
+    $total_complete_tasks = $TodoController->total_complete_tasks(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@
                 <header class="mt-5 ml-3">
                     <h2>
                         Completed Tasks
-                        <span class="badge badge-pill badge-info"><?php echo count($completed_tasks);?></span>
+                        <span class="badge badge-pill badge-info"><?php echo  count( $total_complete_tasks);?></span>
                     </h2>
                 </header>
                 <div class="col-lg-12 mt-5">

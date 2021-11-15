@@ -37,5 +37,20 @@
             $limit_length = $this->TodoModel->get_length_limit();
             return $this->TodoModel->total_pagination($todo_status,$limit_length[0]['list_length']);
         }
+        public function total_complete_tasks($todo_status){
+            return $this->TodoModel->get_todos($todo_status,1,100000000000);
+        }
+        public function save_per_page(){
+            if(isset($_POST['save_length_btn'])){
+                if($_POST['list_length']  != "0"){
+                    $this->TodoModel->save_per_page($_POST['list_length']);
+                    echo "<script>window.alert('Success. Limit per page updated to ".$_POST['list_length']."')</script>";
+                    
+                }
+                else{
+                    echo "<script>window.alert('Select number for page limit')</script>";
+                }
+            }
+        }
     }
 ?>

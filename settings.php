@@ -1,3 +1,8 @@
+<?php
+    include("controllers/TodoController.php");
+    $TodoController = new TodoController();
+    $TodoController->save_per_page();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,13 +40,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <form class="mb-4 mt-5">
+                    <form class="mb-4 mt-5" method="POST">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Items per page</label>
                             </div>
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option selected>Choose...</option>
+                            <select class="custom-select" name="list_length">
+                                <option value="0" selected>Choose...</option>
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -49,7 +54,7 @@
                         </div>
                         <div class="form-group mt-5 text-center">
                             <button type="reset" class="btn btn-light">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" name="save_length_btn" class="btn btn-primary">Save Changes</button>
                         </div>
                     </form>
                 </div>

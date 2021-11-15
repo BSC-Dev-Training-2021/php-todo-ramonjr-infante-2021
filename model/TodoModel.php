@@ -53,5 +53,14 @@
             $total_pages=ceil($total_posts/$limit_length);
             return $total_pages;
         }
+        public function save_per_page($per_page){
+            $sql = "UPDATE options
+            SET list_length = '". $per_page ."'";
+            if (mysqli_query($this->conn, $sql)) {
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }
+        
     }
 ?>
